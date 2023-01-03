@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using dentalclinic;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace dentalclinic
@@ -55,6 +56,13 @@ namespace dentalclinic
         {
             payment pay = new payment();
             pay.Show();
+            this.Hide();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Appointment app = new Appointment();
+            app.Show();
             this.Hide();
         }
     }

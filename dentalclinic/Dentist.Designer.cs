@@ -164,6 +164,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "EMR";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -216,6 +217,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "Dentist";
             this.Text = "Dentist";
+            this.Load += new System.EventHandler(this.Dentist_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.login_pic)).EndInit();

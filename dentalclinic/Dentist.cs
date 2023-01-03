@@ -33,5 +33,17 @@ namespace dentalclinic
             req.Show();
             this.Hide();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            EMR emr = new EMR();
+            emr.Show();
+            this.Hide();
+        }
+
+        private void Dentist_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
