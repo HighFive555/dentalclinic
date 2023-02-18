@@ -78,9 +78,9 @@
             this.label4.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label4.Location = new System.Drawing.Point(40, 227);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(128, 22);
+            this.label4.Size = new System.Drawing.Size(142, 22);
             this.label4.TabIndex = 25;
-            this.label4.Text = "Card Number";
+            this.label4.Text = "Phone Number";
             // 
             // textBox3
             // 

@@ -45,5 +45,19 @@ namespace dentalclinic
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            appointment app = new appointment();
+            app.Show();
+            this.Hide();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Form1 ff = new Form1();
+            ff.Show();
+            this.Hide();
+        }
     }
 }

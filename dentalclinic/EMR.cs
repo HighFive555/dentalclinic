@@ -47,7 +47,19 @@ namespace dentalclinic
         }
         SqlConnection conn = new SqlConnection("Data Source =DESKTOP-DQGMNGN\\SQLEXPRESS;Initial Catalog=Dental_Clinic;Integrated Security=True");
         SqlCommand cmd;
+       
 
+        private void SetFontAndColors()
+        {
+            this.dataGridView1.DefaultCellStyle.Font = new Font("Times New Roman", 7);
+            this.dataGridView1.DefaultCellStyle.ForeColor = Color.DarkBlue;
+            this.dataGridView1.DefaultCellStyle.BackColor = Color.AliceBlue;
+            this.dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
+            this.dataGridView1.DefaultCellStyle.SelectionBackColor = Color.CornflowerBlue;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Times New Roman", 8);
+
+
+        }
         private void button1_Click_1(object sender, EventArgs e)
         {
 
@@ -120,6 +132,22 @@ namespace dentalclinic
                 MessageBox.Show(ee.Message);
             }
 
+            conn.Close();
+
+            SetFontAndColors();
+            conn.Open();
+            SqlCommand cmd1 = conn.CreateCommand();
+            cmd1.CommandType = CommandType.Text;
+            cmd1.CommandText = "SELECT tooth_no, problem, treatment, drug_dose, surface, action, risk, radiology_description, date FROM Progress WHERE Patient_ID  ='" + textBox1.Text + "'";
+            cmd1.ExecuteNonQuery();
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(cmd1);
+            da.Fill(dt);
+            dataGridView1.DataSource = dt;
+            conn.Close();
+
+            conn.Close();
+
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
@@ -137,6 +165,56 @@ namespace dentalclinic
 
         }
 
-        
+       
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            conn.Open();
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "insert into Progress values ('" + comboBox1.Text + "','" + comboBox2.Text + "','" + comboBox3.Text + "','" + comboBox4.Text + "' ,'" + comboBox8.Text + "' ,'" + comboBox7.Text + "','" + comboBox6.Text + "','" + richTextBox1.Text + "','" + dateTimePicker1.Value.ToString() + "','" + textBox1.Text + "')";
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            MessageBox.Show("Progress Note Added Successfully");
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click_2(object sender, EventArgs e)
+        {
+            Dentist den = new Dentist();
+            den.Show();
+            this.Hide();
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
+
+    
 }

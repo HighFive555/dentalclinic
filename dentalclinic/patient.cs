@@ -88,9 +88,7 @@ namespace dentalclinic
             textBox3.Clear();
             textBox1.Clear();
             textBox2.Clear();
-
             textBox4.Clear();
-
             textBox7.Clear();
             textBox9.Clear();
             textBox8.Clear();
@@ -157,6 +155,22 @@ namespace dentalclinic
             }
         }
 
-        
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void patient_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Nurse nu = new Nurse();
+            nu.Show();
+            this.Hide();
+        }
     }
 }
+

@@ -2,94 +2,64 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using dentalclinic;
 
 namespace dentalclinic
 {
-    public partial class Appointment : Form
+    public partial class appointment : Form
     {
-        int month, year;
-        public Appointment()
+        public appointment()
         {
             InitializeComponent();
         }
+        SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-DQGMNGN\SQLEXPRESS;Initial Catalog=Dental_Clinic;Integrated Security=True");
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void SetFontAndColors()
         {
-            displaydays();
+            this.dataGridView1.DefaultCellStyle.Font = new Font("Times New Roman", 10);
+            this.dataGridView1.DefaultCellStyle.ForeColor = Color.DarkBlue;
+            this.dataGridView1.DefaultCellStyle.BackColor = Color.AliceBlue;
+            this.dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
+            this.dataGridView1.DefaultCellStyle.SelectionBackColor = Color.CornflowerBlue;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Times New Roman", 11);
+
+
         }
-        private void displaydays()
+        private void appointment_Load(object sender, EventArgs e)
         {
-            DateTime now = new DateTime();
-            month = now.Month;
-            year = now.Year;
-            String monthname = DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
-            lBDATE.Text = monthname + " " + year;
 
-            DateTime startofthemonth = new DateTime(year, month, 1);
-            int days = DateTime.DaysInMonth(year, month);
-            int dayoftheweek = Convert.ToInt32(startofthemonth.DayOfWeek.ToString("d"));
-            for (int i = 1; i < dayoftheweek; i++)
-            {
-                UserControlblank usblank = new UserControlblank();
-                dayscontainer.Controls.Add(usblank);
-            }
-            for (int i = 1; i < days; i++)
-            {
-                UserControldays usdays = new UserControldays();
-                usdays.days(i);
-                dayscontainer.Controls.Add(usdays);
-            }
         }
 
-        private void btnprevious_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            dayscontainer.Controls.Clear();
-            month--;
-            String monthname = DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
-            lBDATE.Text = monthname + " " + year;
-            DateTime startofthemonth = new DateTime(year, month, 1);
-            int days = DateTime.DaysInMonth(year, month);
-            int dayoftheweek = Convert.ToInt32(startofthemonth.DayOfWeek.ToString("d"));
-            for (int i = 1; i < dayoftheweek; i++)
-            {
-                UserControlblank usblank = new UserControlblank();
-                dayscontainer.Controls.Add(usblank);
-            }
-            for (int i = 1; i < days; i++)
-            {
-                UserControldays usdays = new UserControldays();
-                usdays.days(i);
-                dayscontainer.Controls.Add(usdays);
-            }
+            SetFontAndColors();
+            conn.Open();
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "SELECT Patient_ID, Patient_name, Date, Start, Finish, Status FROM Appointments";
+            cmd.ExecuteNonQuery();
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            dataGridView1.DataSource = dt;
+            conn.Close();
         }
 
-        private void btnnext_Click(object sender, EventArgs e)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            dayscontainer.Controls.Clear();
-            month++;
-            String monthname = DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
-            lBDATE.Text = monthname + " " + year;
-            DateTime startofthemonth = new DateTime(year, month, 1);
-            int days = DateTime.DaysInMonth(year, month);
-            int dayoftheweek = Convert.ToInt32(startofthemonth.DayOfWeek.ToString("d"));
-            for (int i = 1; i < dayoftheweek; i++)
-            {
-                UserControlblank usblank = new UserControlblank();
-                dayscontainer.Controls.Add(usblank);
-            }
-            for (int i = 1; i < days; i++)
-            {
-                UserControldays usdays = new UserControldays();
-                usdays.days(i);
-                dayscontainer.Controls.Add(usdays);
-            }
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Dentist den = new Dentist();
+            den.Show();
+            this.Hide();
         }
     }
 }

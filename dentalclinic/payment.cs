@@ -53,5 +53,12 @@ namespace dentalclinic
                 this.Hide();
             }
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Nurse nn = new Nurse();
+            nn.Show();
+            this.Hide();
+        }
     }
 }

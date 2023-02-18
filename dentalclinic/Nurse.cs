@@ -59,10 +59,32 @@ namespace dentalclinic
             this.Hide();
         }
 
+       
+        private void button5_Click(object sender, EventArgs e)
+        {
+            ocr ocrr = new ocr();
+            ocrr.Show();
+            this.Hide();
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
-            Appointment app = new Appointment();
-            app.Show();
+            n_appointments napp = new n_appointments();
+            napp.Show();
+            this.Hide();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            expenses1 inv = new expenses1();
+            inv.Show();
+            this.Hide();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Form1 form = new Form1();   
+            form.Show();
             this.Hide();
         }
     }
